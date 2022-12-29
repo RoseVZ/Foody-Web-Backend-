@@ -35,7 +35,7 @@ class Restaurant(models.Model):
 
 
 class DeliveryAgent(models.Model):
-    DL_no=models.IntegerField(primary_key=True,max_length=100)
+    DL_no=models.IntegerField(primary_key=True)
     Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Location=models.CharField(max_length=100)
     License=models.ImageField()
@@ -78,7 +78,7 @@ class Payment(models.Model):
         (2,"Not paid"),
     )
     Cust_Id=models.ForeignKey(Customer,on_delete=models.CASCADE)
-    Satus=models.IntegerField(max_length=1,choices=status)
+    Satus=models.IntegerField(choices=status)
     create_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
