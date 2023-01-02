@@ -17,14 +17,14 @@ class User(models.Model):
 
 class Customer(models.Model):
     Username=models.CharField(max_length=100)
-    Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Addr=models.TextField(max_length=500)
     def __str__(self):
         return self.name
 
 class Restaurant(models.Model):
     GST_no =models.IntegerField(primary_key=True)
-    Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Addr=models.TextField(max_length=500)
     Mgr_name=models.CharField(max_length=100)
     Mgr_no=models.IntegerField()
@@ -36,7 +36,7 @@ class Restaurant(models.Model):
 
 class DeliveryAgent(models.Model):
     DL_no=models.IntegerField(primary_key=True)
-    Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Location=models.CharField(max_length=100)
     License=models.ImageField()
     def __str__(self):
