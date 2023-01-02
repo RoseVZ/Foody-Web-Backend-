@@ -27,6 +27,7 @@ class Restaurant(models.Model):
     # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Addr=models.TextField(max_length=500)
     Mgr_name=models.CharField(max_length=100)
+    Name=models.CharField(max_length=100,default="NULL")
     Mgr_no=models.IntegerField()
     Descr=models.TextField()
     # Images=models.ImageField()

@@ -21,7 +21,7 @@ from databases.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',ReactView.as_view(),name="xx")
+    path('restaurants',RestaurantView.as_view(),name="xx")
     #path('',TemplateView.as_view(template_name='index.html'))
     
 ]
