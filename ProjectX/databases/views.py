@@ -10,8 +10,8 @@ class ReactView(APIView):
     serializer_class=ReactSerializer
     def get(self,request):
         
-        output=[{"email":output.email,"password":output.password,"phone_no":output.phone_no} 
-        for output in User.objects.all()]
+        output=[{"GST":output.GST_no,"Address":output.Addr,"Mananger_no":output.Mgr_no,"Manager_name":output.Mgr_name,"Description":output.Descr} 
+        for output in Restaurant.objects.all()]
         return Response(output)
     
     def post(self,request):

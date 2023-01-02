@@ -24,11 +24,12 @@ class Customer(models.Model):
 
 class Restaurant(models.Model):
     GST_no =models.IntegerField(primary_key=True)
-    Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Addr=models.TextField(max_length=500)
     Mgr_name=models.CharField(max_length=100)
-    Mgr_no=models.IntegerField()
+    Mgr_no=models.CharField(max_length=100)
     Descr=models.TextField()
+    # Photo=models.ImageField()
     # Images=models.ImageField()
     def __str__(self):
         return self.name
@@ -39,6 +40,7 @@ class DeliveryAgent(models.Model):
     Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Location=models.CharField(max_length=100)
     License=models.ImageField()
+    
     def __str__(self):
         return self.name
 
