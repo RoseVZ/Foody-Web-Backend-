@@ -7,7 +7,7 @@ from .serializers import *
 
 
 class RestaurantView(APIView):
-    serializer_class=ReactSerializer
+    serializer_class=RestaurantSerializer
     def get(self,request):
         
         output=[{"GST_no":output.GST_no,"Name": output.Name,"Address":output.Addr,"Manager name":output.Mgr_name,"Manager number":output.Mgr_no,"Description":output.Descr} 
@@ -15,7 +15,7 @@ class RestaurantView(APIView):
         return Response(output)
     
     def post(self,request):
-        serializer=ReactSerializer(data=request.data)
+        serializer=RestaurantSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
