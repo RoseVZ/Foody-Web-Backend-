@@ -1,19 +1,60 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager
 # Create your models here.
 
-class User(models.Model):
-    roles=(
-        (1,"Customer"),
-        (2,"Restaurant"),
-        (3,"Delivery Agent"),
-    )
-    email = models.EmailField(max_length=100,unique=True,primary_key=True)
-    password= models.CharField(max_length=100)
-    phone_no=models.IntegerField()
-    # Role_Id=models.IntegerField(max_length=1,choices=roles)
+
+
+class UserAccountManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+
+        user.set_password(password)
+        user.save()
+
+        return user
+
+class UserAccount(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(max_length=255, unique=True)
+    # name = models.CharField(max_length=255)
+    # role=models.CharField(max_length=255,default=False)
+    # last_name = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    objects = UserAccountManager()
+
+    USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = ['name','role']
+
+    def get_full_name(self):
+        return self.first_name
+
+    def get_short_name(self):
+        return self.first_name
+    
     def __str__(self):
-        return self.name
+        return self.email
+
+
+
+
+# class User(models.Model):
+#     roles=(
+#         (1,"Customer"),
+#         (2,"Restaurant"),
+#         (3,"Delivery Agent"),
+#     )
+#     email = models.EmailField(max_length=100,unique=True,primary_key=True)
+#     password= models.CharField(max_length=100)
+#     phone_no=models.IntegerField()
+#     # Role_Id=models.IntegerField(max_length=1,choices=roles)
+#     def __str__(self):
+#         return self.name
 
 class Customer(models.Model):
     Username=models.CharField(max_length=100)
