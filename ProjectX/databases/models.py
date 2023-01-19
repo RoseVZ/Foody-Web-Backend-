@@ -73,7 +73,7 @@ class Restaurant(models.Model):
     Descr=models.TextField()
     # Images=models.ImageField()
     def __str__(self):
-        return self.name
+        return self.Name
 
 
 class DeliveryAgent(models.Model):
@@ -89,9 +89,9 @@ class Menu(models.Model):
     Tag=models.CharField(max_length=100)
     Price=models.DecimalField(decimal_places=2,max_digits=7)
     GST_no=models.ForeignKey(Restaurant,on_delete=models.CASCADE)
-    Photo=models.ImageField()
+    #Photo=models.ImageField()
     def __str__(self):
-        return self.name
+        return self.Name
 
 class Cart(models.Model):
     Cust_Id=models.ForeignKey(Customer,on_delete=models.CASCADE)
