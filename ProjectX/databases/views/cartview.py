@@ -7,6 +7,7 @@ from django.db.models import Subquery
 from databases.serializers import MenuSerializer
 from rest_framework.decorators import api_view, permission_classes
 from ..serializers import CartSerializer
+from django.http.response import JsonResponse
 
 @api_view(['POST'])
 def cartPost(request):
@@ -24,3 +25,15 @@ def getCartItems(request, pk):
     serializer = CartSerializer(data, many=True)
     serializer1=MenuSerializer(data1,many=True)
     return Response( serializer1.data)
+
+@api_view(['DELETE'])
+def DeleteAllItems(request, pk):
+     data=Cart.objects.filter(User_Id=int(pk))
+     data.delete()
+     return JsonResponse({'message':"successful"})
+
+@api_view(['DELETE'])
+def DeleteOneItem(request, pk,pk1):
+     data=Cart.objects.filter(User_Id=int(pk)).filter(Food_Id=int(pk1))
+     data.delete()
+     return JsonResponse({'message':"successful"})

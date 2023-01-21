@@ -115,7 +115,12 @@ class Order(models.Model):
         (2,"Out for Delivery"),
         (3,"Delivered"),
     )
-    Cust_Id=models.ForeignKey(Customer,on_delete=models.CASCADE)
+    User_Id=models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+        default=1
+    )
     Status= models.IntegerField(max_length=1,choices=status)
     def __str__(self):
         return self.name

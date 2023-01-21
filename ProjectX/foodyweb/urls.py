@@ -27,6 +27,8 @@ urlpatterns = [
     # path('',TemplateView.as_view(template_name='index.html'))
     #this is to get the 
     path('cart/<str:pk>/',menuview.getFood1,name="fooditem"),
+    path('cartdelete/<str:pk>/',cartview.DeleteAllItems,name="fooditem"),
+     path('cartdeleteItem/<str:pk>/<str:pk1>/',cartview.DeleteOneItem,name="fooditem"),
     path('cart1/<str:pk>/',cartview.getCartItems,name="fooditem"),
     path('cart/',cartview.cartPost,name="fooditem"),
     path('restaurant/<str:pk>/',menuview.getMenu1,name="product"),
