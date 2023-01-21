@@ -18,7 +18,7 @@ from django.urls import path,include,re_path
 from django.views.generic import TemplateView
 
 from databases.views import adminviews 
-from databases.views import menuview
+from databases.views import menuview,cartview
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant/',adminviews.RestaurantView.as_view(),name="xx"),
@@ -26,7 +26,10 @@ urlpatterns = [
     # path('',RestaurantView.as_view())
     # path('',TemplateView.as_view(template_name='index.html'))
     #this is to get the 
-    path('restaurant/<str:pk>/',menuview.getMenu,name="product"),
+    path('cart/<str:pk>/',menuview.getFood1,name="fooditem"),
+    path('cart1/<str:pk>/',cartview.getCartItems,name="fooditem"),
+    path('cart/',cartview.cartPost,name="fooditem"),
+    path('restaurant/<str:pk>/',menuview.getMenu1,name="product"),
     path('auth/',include('djoser.urls')),
     path('auth/',include('djoser.urls.jwt')),
    

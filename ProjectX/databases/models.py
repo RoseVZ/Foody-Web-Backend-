@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager
 # Create your models here.
-
+from django.conf import settings
 
 
 class UserAccountManager(BaseUserManager):
@@ -24,18 +24,18 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     # role=models.CharField(max_length=255,default=False)
     # last_name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
     objects = UserAccountManager()
 
     USERNAME_FIELD = 'email'
     # REQUIRED_FIELDS = ['name','role']
 
-    def get_full_name(self):
-        return self.first_name
+    # def get_full_name(self):
+    #     return self.first_name
 
-    def get_short_name(self):
-        return self.first_name
+    # def get_short_name(self):
+    #     return self.first_name
     
     def __str__(self):
         return self.email
@@ -94,10 +94,16 @@ class Menu(models.Model):
         return self.Name
 
 class Cart(models.Model):
-    Cust_Id=models.ForeignKey(Customer,on_delete=models.CASCADE)
+    # Cust_Id=models.ForeignKey(Customer,on_delete=models.CASCADE)
+    User_Id=models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+        default=1
+    )
     Food_Id=models.ForeignKey(Menu,on_delete=models.CASCADE)
-    Amount = models.DecimalField(decimal_places=2,max_digits=7)
-    Total_No_items=models.IntegerField()
+    # Amount = models.DecimalField(decimal_places=2,max_digits=7)
+    # Total_No_items=models.IntegerField()
     def __str__(self):
         return self.name
 

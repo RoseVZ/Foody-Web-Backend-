@@ -25,6 +25,12 @@ from django.http import JsonResponse
 
 @api_view(['GET'])
 def getMenu1(request, pk):
-    data = Menu.objects.all().values()
+    data = Menu.objects.all().filter(GST_no=int(pk))
     serializer = MenuSerializer(data, many=True)
-    return JsonResponse({'data': data})
+    return Response( serializer.data)
+
+@api_view(['GET'])
+def getFood1(request, pk):
+    data = Menu.objects.filter(id=int(pk))
+    serializer = MenuSerializer(data, many=True)
+    return Response( serializer.data)
