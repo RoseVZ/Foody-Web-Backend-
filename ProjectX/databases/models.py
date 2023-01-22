@@ -102,6 +102,7 @@ class Cart(models.Model):
         default=1
     )
     Food_Id=models.ForeignKey(Menu,on_delete=models.CASCADE)
+    Quantity= models.IntegerField(max_length=1)
     # Amount = models.DecimalField(decimal_places=2,max_digits=7)
     # Total_No_items=models.IntegerField()
     def __str__(self):
@@ -122,6 +123,8 @@ class Order(models.Model):
         default=1
     )
     Status= models.IntegerField(max_length=1,choices=status)
+    Price=models.DecimalField(decimal_places=2,max_digits=7)
+
     def __str__(self):
         return self.name
 
