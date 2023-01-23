@@ -18,7 +18,7 @@ from django.urls import path,include,re_path
 from django.views.generic import TemplateView
 
 from databases.views import adminviews 
-from databases.views import menuview,cartview,orderview,loginview,restpageviews
+from databases.views import menuview,cartview,orderview,loginview,restpageviews,userview
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant/',adminviews.RestaurantView.as_view(),name="xx"),
@@ -40,6 +40,13 @@ urlpatterns = [
     path('restItems/<str:pk>/<str:pk1>/',restpageviews.getRestItems,name="product"),
     path('putstatus/<str:pk>/',restpageviews.UpdateStatus,name="product"), 
      path('restOrder/<str:pk>/',restpageviews.getRestOrders,name="product"),  
+          
+
+    #all user urls
+    path('postcprofile/<str:pk>/',userview.saveCProfile,name="product"),
+    path('deletedupprofile/<str:pk>/',userview.DeleteDuplicate,name="delete"), 
+    path('getuser/<str:pk>/',userview.getUser,name="product"),    
+    path('getuserorder/<str:pk>/',orderview.getUsersOrders,name="product"), 
     path('auth/',include('djoser.urls')),
     path('auth/',include('djoser.urls.jwt')),
    

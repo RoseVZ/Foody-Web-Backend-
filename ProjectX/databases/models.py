@@ -66,6 +66,8 @@ class Customer(models.Model):
         default=1
     )
     Addr=models.TextField(max_length=500)
+    Name=models.CharField(max_length=100)
+    Mobile=models.CharField(max_length=100)
     def __str__(self):
         return self.name
 

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from databases.models import Menu,Cart
+from databases.models import Menu,Cart,Customer
 from django.db.models import Subquery
 from databases.serializers import MenuSerializer
 from rest_framework.decorators import api_view, permission_classes
@@ -37,3 +37,4 @@ def DeleteOneItem(request, pk,pk1):
      data=Cart.objects.filter(User_Id=int(pk)).filter(Food_Id=int(pk1))
      data.delete()
      return JsonResponse({'message':"successful"})
+
