@@ -36,8 +36,10 @@ urlpatterns = [
     path('saveorderitems/',orderview.saveOrderItems,name="fooditem"),
     path('restaurant/<str:pk>/',menuview.getMenu1,name="product"),
     path('restadmin/<str:pk>/',restpageviews.getRestID,name="product"),
-     path('restItems/<str:pk>/',restpageviews.getRestItems1,name="product"), 
-          path('restOrder/<str:pk>/',restpageviews.getRestItems,name="product"),  
+    #  path('restItems1/<str:pk>/',restpageviews.getRestItems1,name="product"), 
+    path('restItems/<str:pk>/<str:pk1>/',restpageviews.getRestItems,name="product"),
+    path('putstatus/<str:pk>/',restpageviews.UpdateStatus,name="product"), 
+     path('restOrder/<str:pk>/',restpageviews.getRestOrders,name="product"),  
     path('auth/',include('djoser.urls')),
     path('auth/',include('djoser.urls.jwt')),
    
