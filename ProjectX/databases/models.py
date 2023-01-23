@@ -23,17 +23,17 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     # name = models.CharField(max_length=255)
     # role=models.CharField(max_length=255,default=False)
     # last_name = models.CharField(max_length=255)
-    Role= models.IntegerField(max_length=1)
+    # Role= models.IntegerField(max_length=1)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
 
     objects = UserAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['Role']
+    # REQUIRED_FIELDS = ['Role']
 
-    def get_role(self):
-        return self.Role
+    # def get_role(self):
+    #     return self.Role
 
     # def get_short_name(self):
     #     return self.first_name
