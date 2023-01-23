@@ -18,7 +18,7 @@ from django.urls import path,include,re_path
 from django.views.generic import TemplateView
 
 from databases.views import adminviews 
-from databases.views import menuview,cartview,orderview,loginview
+from databases.views import menuview,cartview,orderview,loginview,restpageviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurant/',adminviews.RestaurantView.as_view(),name="xx"),
@@ -33,7 +33,11 @@ urlpatterns = [
     path('cart1/<str:pk>/',cartview.getCartItems,name="fooditem"),
     path('cart/',cartview.cartPost,name="fooditem"),
     path('saveorder/',orderview.saveOrder,name="fooditem"),
+    path('saveorderitems/',orderview.saveOrderItems,name="fooditem"),
     path('restaurant/<str:pk>/',menuview.getMenu1,name="product"),
+    path('restadmin/<str:pk>/',restpageviews.getRestID,name="product"),
+     path('restItems/<str:pk>/',restpageviews.getRestItems1,name="product"), 
+          path('restOrder/<str:pk>/',restpageviews.getRestItems,name="product"),  
     path('auth/',include('djoser.urls')),
     path('auth/',include('djoser.urls.jwt')),
    

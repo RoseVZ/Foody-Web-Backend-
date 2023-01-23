@@ -30,3 +30,16 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model =Order
         fields="__all__"
+
+class OrderItemsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =OrderItems
+        fields="__all__"
+
+class Food_OrderSerializer(serializers.ModelSerializer):
+    OrderItem=OrderItemsSerializer()
+    
+    class Meta:
+        model =Menu
+        fields='__all__'
+    

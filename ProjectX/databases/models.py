@@ -59,13 +59,24 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
 class Customer(models.Model):
     Username=models.CharField(max_length=100)
-    # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    User_Id=models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+        default=1
+    )
     Addr=models.TextField(max_length=500)
     def __str__(self):
         return self.name
 
 class Restaurant(models.Model):
     GST_no =models.IntegerField(primary_key=True)
+    User_Id=models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+        default=1
+    )
     # Role_Id=models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     Addr=models.TextField(max_length=500)
     Mgr_name=models.CharField(max_length=100)
@@ -127,7 +138,13 @@ class Order(models.Model):
     Price=models.DecimalField(decimal_places=2,max_digits=7)
 
     def __str__(self):
-        return self.name
+        return self.User_Id
+
+class OrderItems(models.Model):
+    Order_Id=models.ForeignKey(Order,on_delete=models.CASCADE,related_name="order_info")
+    Food_Id=models.ForeignKey(Menu,on_delete=models.CASCADE,related_name="ordered_food")
+    def __str__(self):
+        return self.id
 
 class Payment(models.Model):
     status=(

@@ -12,3 +12,4 @@ def getUser1(request, pk):
     data = UserAccount.objects.all().filter(email=pk)
     serializer = UserCreateSerializer(data, many=True)
     return Response( serializer.data)
+
