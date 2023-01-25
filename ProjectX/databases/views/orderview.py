@@ -26,6 +26,6 @@ def saveOrderItems(request):
 
 @api_view(['GET'])
 def getUsersOrders(request, pk):
-    data = Order.objects.filter(User_Id=int(pk))
+    data = Order.objects.filter(User_Id=int(pk)).order_by('-id')
     serializer = OrderSerializer(data, many=True)
     return Response( serializer.data)

@@ -54,3 +54,9 @@ def UpdateStatus(request, pk):
         data.update(Status=2)
         serializer=OrderSerializer(data,many=True)
         return JsonResponse({'message':"successful"})
+
+@api_view(['GET'])
+def getRestDetails(request, pk):
+    data = Restaurant.objects.all().filter(GST_no=int(pk))
+    serializer = RestaurantSerializer(data, many=True)
+    return Response( serializer.data)
