@@ -85,6 +85,7 @@ class Restaurant(models.Model):
     Name=models.CharField(max_length=100,default="NULL")
     Mgr_no=models.IntegerField()
     Descr=models.TextField()
+    Url=models.CharField(max_length=300)
     # Images=models.ImageField()
     def __str__(self):
         return self.Name
@@ -103,7 +104,9 @@ class Menu(models.Model):
     Tag=models.CharField(max_length=100)
     Price=models.DecimalField(decimal_places=2,max_digits=7)
     GST_no=models.ForeignKey(Restaurant,on_delete=models.CASCADE)
+
     Descr=models.CharField(max_length=700)
+    Url=models.CharField(max_length=300)
     #Photo=models.ImageField()
     def __str__(self):
         return self.Name
